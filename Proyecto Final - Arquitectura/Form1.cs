@@ -55,13 +55,14 @@ namespace Proyecto_Final___Arquitectura
             {
 
                 string Resultante = Lectura.Substring(1);
-                lblHumedad.Text = Resultante;
+                ActualizarLabel(lblHumedad, Resultante);
+
             }
             else if (Lectura.StartsWith("t"))
             {
 
                 string Resultante = Lectura.Substring(1);
-                lblTemperatura.Text = Resultante;
+                ActualizarLabel(lblTemperatura, Resultante);
             }
             else if (Lectura.StartsWith("p"))
             {
@@ -337,7 +338,20 @@ namespace Proyecto_Final___Arquitectura
             // Determinar si el formulario está en modo oscuro
             return BackColor == Color.FromArgb(42, 42, 42);
         }
-
+        private void ActualizarLabel(Label label, string texto)
+        {
+            if (label.InvokeRequired)
+            {
+                label.Invoke((MethodInvoker)delegate
+                {
+                    label.Text = texto;
+                });
+            }
+            else
+            {
+                label.Text = texto;
+            }
+        }
 
     }
 }
