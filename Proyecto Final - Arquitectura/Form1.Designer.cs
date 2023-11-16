@@ -104,6 +104,7 @@ namespace Proyecto_Final___Arquitectura
             // tmrHumedad
             // 
             this.tmrHumedad.Interval = 1000;
+            this.tmrHumedad.Tick += new System.EventHandler(this.tmrHumedad_Tick);
             // 
             // pnlbtnCamara
             // 
@@ -369,6 +370,7 @@ namespace Proyecto_Final___Arquitectura
             this.pnlInformacion.Size = new System.Drawing.Size(576, 272);
             this.pnlInformacion.TabIndex = 13;
             this.pnlInformacion.TextColor = System.Drawing.Color.White;
+            this.pnlInformacion.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlInformacion_Paint);
             // 
             // lblTerrario
             // 
@@ -746,7 +748,7 @@ namespace Proyecto_Final___Arquitectura
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(84, 12);
+            this.pictureBox3.Location = new System.Drawing.Point(75, 17);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 20);
@@ -756,7 +758,7 @@ namespace Proyecto_Final___Arquitectura
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(56, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(54, 16);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(20, 20);
@@ -848,7 +850,7 @@ namespace Proyecto_Final___Arquitectura
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(232)))), ((int)(((byte)(235)))));
-            this.ClientSize = new System.Drawing.Size(680, 797);
+            this.ClientSize = new System.Drawing.Size(678, 799);
             this.Controls.Add(this.pnlbtnCamara);
             this.Controls.Add(this.pnlBotones);
             this.Controls.Add(this.pnlGrabacion);

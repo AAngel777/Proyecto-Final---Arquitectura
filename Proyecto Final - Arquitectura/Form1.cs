@@ -11,8 +11,7 @@ using FontAwesome.Sharp;
 using System.Runtime.InteropServices;
 using AForge.Video;
 using AForge.Video.DirectShow;
-
-
+using System.Diagnostics;
 
 namespace Proyecto_Final___Arquitectura
 {
@@ -28,8 +27,7 @@ namespace Proyecto_Final___Arquitectura
         public Form1()
         {
             InitializeComponent();
-            
-
+    
         }
 
         private void btnAutomático_Click(object sender, EventArgs e)
@@ -38,10 +36,11 @@ namespace Proyecto_Final___Arquitectura
             Arduino.PortName = Puerto;
             Arduino.BaudRate = 9600;
             Arduino.Open();
-            if (Arduino.IsOpen) { pnlInformacion.Enabled = true; tmrHumedad.Enabled = true; btnAutomático.Enabled = false; }
+            if (Arduino.IsOpen) { pnlInformacion.Enabled = true; tmrHumedad.Start(); btnAutomático.Enabled = false; }
         }
         private void tmrHumedad_Tick(object sender, EventArgs e)
         {
+            Debug.WriteLine("Tick del temporizador");
             string letras = "HTP";
 
             char letraActual = letras[n % letras.Length];
@@ -67,7 +66,7 @@ namespace Proyecto_Final___Arquitectura
             else if (Lectura.StartsWith("p"))
             {
                 string Resultante = Lectura.Substring(1);
-                //lblCuantaAgua.Text = "Porcentaje de Agua de la Bomba:" + Resultante;
+                picBomba.Text = "Porcentaje de Agua de la Bomba:" + Resultante;
             }
             else
             {
@@ -75,6 +74,7 @@ namespace Proyecto_Final___Arquitectura
             }
 
             if (n > 2) { n = 0; }
+
         }
         private void cmdCamara_Click(object sender, EventArgs e)
         {
@@ -105,8 +105,6 @@ namespace Proyecto_Final___Arquitectura
 
             // Ajustar la imagen al tamaño del pictureBox4
             pictureBox4.Image = ResizeImage(imagenCamara, pictureBox4.Width, pictureBox4.Height);
-
-
         }
         private Bitmap ResizeImage(Image image, int width, int height)
         {
@@ -342,7 +340,7 @@ namespace Proyecto_Final___Arquitectura
         {
             if (label.InvokeRequired)
             {
-                label.Invoke((MethodInvoker)delegate
+                label.BeginInvoke((MethodInvoker)delegate
                 {
                     label.Text = texto;
                 });
@@ -351,6 +349,16 @@ namespace Proyecto_Final___Arquitectura
             {
                 label.Text = texto;
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlInformacion_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
     }
