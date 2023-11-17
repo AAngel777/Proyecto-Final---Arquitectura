@@ -51,10 +51,12 @@ namespace Proyecto_Final___Arquitectura
             string Lectura = Arduino.ReadLine();
             // Verificar si la cadena comienza con la letra "h"
             if (Lectura.StartsWith("h"))
+
             {
 
                 string Resultante = Lectura.Substring(1);
-                ActualizarLabel(lblHumedad, Resultante);
+                float porcentaje = (int.Parse(Resultante)/1023)*(100);
+                ActualizarLabel(lblHumedad, porcentaje.ToString());
 
             }
             else if (Lectura.StartsWith("t"))
@@ -66,7 +68,7 @@ namespace Proyecto_Final___Arquitectura
             else if (Lectura.StartsWith("p"))
             {
                 string Resultante = Lectura.Substring(1);
-                picBomba.Text = "Porcentaje de Agua de la Bomba:" + Resultante;
+                picBomba.Text = Resultante;
             }
             else
             {
@@ -135,7 +137,6 @@ namespace Proyecto_Final___Arquitectura
             {
                 cmdApagarBomba.IconChar = IconChar.DropletSlash;
                 Arduino.Write("E");
-                cmdApagarBomba.Text = "Apagar Bomba";
                 Encender = true;
             }
             else
