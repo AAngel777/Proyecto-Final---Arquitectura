@@ -55,8 +55,19 @@ namespace Proyecto_Final___Arquitectura
             {
 
                 string Resultante = Lectura.Substring(1);
-                float porcentaje = (int.Parse(Resultante)/1023)*(100);
-                ActualizarLabel(lblHumedad, porcentaje.ToString());
+                float porcentajeSeco = (int.Parse(Resultante)/1023.0f)*(100);
+                float porcentajeHumedo = 100 - porcentajeSeco;
+
+                ActualizarLabel(lblHumedad, porcentajeHumedo.ToString("F2"));
+
+                /*if (porcentajeHumedo >= 70)
+                {
+                    MessageBox.Show("La planta está lo suficientemente húmeda.");
+                }
+                else if (porcentajeHumedo <= 30)
+                {
+                    MessageBox.Show("La planta está seca y necesita ser regada.");
+                }*/
 
             }
             else if (Lectura.StartsWith("t"))
